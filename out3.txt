@@ -1,0 +1,152 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.2, pytest-9.0.2, pluggy-1.6.0 -- E:\SupportAutomationAgent\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: E:\SupportAutomationAgent
+plugins: anyio-4.12.1
+collecting ... collected 28 items
+
+tests/test_auth_and_workspaces.py::test_register_and_login ERROR         [  3%]
+tests/test_auth_and_workspaces.py::test_workspace_isolation ERROR        [  7%]
+tests/test_auth_and_workspaces.py::test_rb_permissions ERROR             [ 10%]
+tests/test_health.py::test_health_endpoint PASSED                        [ 14%]
+tests/test_jobs.py::test_enqueue_job PASSED                              [ 17%]
+tests/test_jobs.py::test_execute_job_success FAILED                      [ 21%]
+tests/test_jobs.py::test_execute_job_failure FAILED                      [ 25%]
+tests/test_messages_and_audit.py::test_create_message_success ERROR      [ 28%]
+tests/test_messages_and_audit.py::test_list_messages_success ERROR       [ 32%]
+tests/test_messages_and_audit.py::test_create_message_forbidden_non_member ERROR [ 35%]
+tests/test_messages_and_audit.py::test_list_messages_forbidden_non_member ERROR [ 39%]
+tests/test_messages_and_audit.py::test_audit_log_on_ticket_create ERROR  [ 42%]
+tests/test_messages_and_audit.py::test_audit_log_on_message_create ERROR [ 46%]
+tests/test_tickets.py::test_create_ticket ERROR                          [ 50%]
+tests/test_tickets.py::test_read_tickets ERROR                           [ 53%]
+tests/test_tickets.py::test_update_ticket_status_valid_transition ERROR  [ 57%]
+tests/test_tickets.py::test_update_ticket_status_invalid_transition ERROR [ 60%]
+tests/test_tickets.py::test_viewer_cannot_update_ticket_status ERROR     [ 64%]
+tests/test_tickets.py::test_assign_ticket_valid ERROR                    [ 67%]
+tests/test_tickets.py::test_assign_ticket_unassign ERROR                 [ 71%]
+tests/test_tickets.py::test_assign_ticket_to_outsider_fails ERROR        [ 75%]
+tests/test_webhooks.py::test_ingest_ticket_new_user ERROR                [ 78%]
+tests/test_webhooks.py::test_ingest_ticket_existing_user ERROR           [ 82%]
+tests/test_webhooks.py::test_ingest_ticket_invalid_secret ERROR          [ 85%]
+tests/test_workspaces.py::test_create_workspace ERROR                    [ 89%]
+tests/test_workspaces.py::test_add_and_remove_member ERROR               [ 92%]
+tests/test_workspaces.py::test_non_admin_cannot_add_member ERROR         [ 96%]
+tests/test_workspaces.py::test_admin_cannot_remove_self ERROR            [100%]
+
+=================================== ERRORS ====================================
+__________________ ERROR at setup of test_register_and_login __________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_________________ ERROR at setup of test_workspace_isolation __________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+____________________ ERROR at setup of test_rb_permissions ____________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+________________ ERROR at setup of test_create_message_success ________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+________________ ERROR at setup of test_list_messages_success _________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_________ ERROR at setup of test_create_message_forbidden_non_member __________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+__________ ERROR at setup of test_list_messages_forbidden_non_member __________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+______________ ERROR at setup of test_audit_log_on_ticket_create ______________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_____________ ERROR at setup of test_audit_log_on_message_create ______________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+____________________ ERROR at setup of test_create_ticket _____________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_____________________ ERROR at setup of test_read_tickets _____________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+________ ERROR at setup of test_update_ticket_status_valid_transition _________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_______ ERROR at setup of test_update_ticket_status_invalid_transition ________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+__________ ERROR at setup of test_viewer_cannot_update_ticket_status __________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_________________ ERROR at setup of test_assign_ticket_valid __________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+________________ ERROR at setup of test_assign_ticket_unassign ________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+___________ ERROR at setup of test_assign_ticket_to_outsider_fails ____________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+________________ ERROR at setup of test_ingest_ticket_new_user ________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_____________ ERROR at setup of test_ingest_ticket_existing_user ______________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_____________ ERROR at setup of test_ingest_ticket_invalid_secret _____________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+___________________ ERROR at setup of test_create_workspace ___________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+________________ ERROR at setup of test_add_and_remove_member _________________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_____________ ERROR at setup of test_non_admin_cannot_add_member ______________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+_______________ ERROR at setup of test_admin_cannot_remove_self _______________
+E   AttributeError: 'Engine' object has no attribute 'execute'
+================================== FAILURES ===================================
+E   AssertionError: assert <JobStatus.pending: 'pending'> == <JobStatus.co...: 'completed'>
+      
+      - completed
+      + pending
+E:\SupportAutomationAgent\tests\test_jobs.py:31: AssertionError: assert <JobStatus.pending: 'pending'> == <JobStatus.co...: 'completed'>
+E   AssertionError: assert <JobStatus.pending: 'pending'> == <JobStatus.failed: 'failed'>
+      
+      - failed
+      + pending
+E:\SupportAutomationAgent\tests\test_jobs.py:45: AssertionError: assert <JobStatus.pending: 'pending'> == <JobStatus.failed: 'failed'>
+============================== warnings summary ===============================
+app\api\v1\routes\auth.py:23
+  E:\SupportAutomationAgent\app\api\v1\routes\auth.py:23: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class UserResponse(BaseModel):
+
+app\schemas\ticket.py:29
+  E:\SupportAutomationAgent\app\schemas\ticket.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class TicketResponse(TicketBase):
+
+app\schemas\message.py:10
+  E:\SupportAutomationAgent\app\schemas\message.py:10: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MessageResponse(BaseModel):
+
+app\schemas\workspace.py:9
+  E:\SupportAutomationAgent\app\schemas\workspace.py:9: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class WorkspaceResponse(BaseModel):
+
+app\schemas\workspace.py:29
+  E:\SupportAutomationAgent\app\schemas\workspace.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MemberResponse(BaseModel):
+
+tests/test_jobs.py::test_enqueue_job
+tests/test_jobs.py::test_execute_job_success
+tests/test_jobs.py::test_execute_job_failure
+  E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\sql\schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_jobs.py::test_execute_job_success - AssertionError: assert ...
+FAILED tests/test_jobs.py::test_execute_job_failure - AssertionError: assert ...
+ERROR tests/test_auth_and_workspaces.py::test_register_and_login - AttributeE...
+ERROR tests/test_auth_and_workspaces.py::test_workspace_isolation - Attribute...
+ERROR tests/test_auth_and_workspaces.py::test_rb_permissions - AttributeError...
+ERROR tests/test_messages_and_audit.py::test_create_message_success - Attribu...
+ERROR tests/test_messages_and_audit.py::test_list_messages_success - Attribut...
+ERROR tests/test_messages_and_audit.py::test_create_message_forbidden_non_member
+ERROR tests/test_messages_and_audit.py::test_list_messages_forbidden_non_member
+ERROR tests/test_messages_and_audit.py::test_audit_log_on_ticket_create - Att...
+ERROR tests/test_messages_and_audit.py::test_audit_log_on_message_create - At...
+ERROR tests/test_tickets.py::test_create_ticket - AttributeError: 'Engine' ob...
+ERROR tests/test_tickets.py::test_read_tickets - AttributeError: 'Engine' obj...
+ERROR tests/test_tickets.py::test_update_ticket_status_valid_transition - Att...
+ERROR tests/test_tickets.py::test_update_ticket_status_invalid_transition - A...
+ERROR tests/test_tickets.py::test_viewer_cannot_update_ticket_status - Attrib...
+ERROR tests/test_tickets.py::test_assign_ticket_valid - AttributeError: 'Engi...
+ERROR tests/test_tickets.py::test_assign_ticket_unassign - AttributeError: 'E...
+ERROR tests/test_tickets.py::test_assign_ticket_to_outsider_fails - Attribute...
+ERROR tests/test_webhooks.py::test_ingest_ticket_new_user - AttributeError: '...
+ERROR tests/test_webhooks.py::test_ingest_ticket_existing_user - AttributeErr...
+ERROR tests/test_webhooks.py::test_ingest_ticket_invalid_secret - AttributeEr...
+ERROR tests/test_workspaces.py::test_create_workspace - AttributeError: 'Engi...
+ERROR tests/test_workspaces.py::test_add_and_remove_member - AttributeError: ...
+ERROR tests/test_workspaces.py::test_non_admin_cannot_add_member - AttributeE...
+ERROR tests/test_workspaces.py::test_admin_cannot_remove_self - AttributeErro...
+============= 2 failed, 2 passed, 8 warnings, 24 errors in 0.26s ==============

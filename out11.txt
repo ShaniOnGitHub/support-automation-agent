@@ -1,0 +1,379 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.2, pytest-9.0.2, pluggy-1.6.0 -- E:\SupportAutomationAgent\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: E:\SupportAutomationAgent
+plugins: anyio-4.12.1
+collecting ... collected 28 items
+
+tests/test_auth_and_workspaces.py::test_register_and_login PASSED        [  3%]
+tests/test_auth_and_workspaces.py::test_workspace_isolation PASSED       [  7%]
+tests/test_auth_and_workspaces.py::test_rb_permissions PASSED            [ 10%]
+tests/test_health.py::test_health_endpoint PASSED                        [ 14%]
+tests/test_jobs.py::test_enqueue_job PASSED                              [ 17%]
+tests/test_jobs.py::test_execute_job_success PASSED                      [ 21%]
+tests/test_jobs.py::test_execute_job_failure PASSED                      [ 25%]
+tests/test_messages_and_audit.py::test_create_message_success PASSED     [ 28%]
+tests/test_messages_and_audit.py::test_list_messages_success PASSED      [ 32%]
+tests/test_messages_and_audit.py::test_create_message_forbidden_non_member PASSED [ 35%]
+tests/test_messages_and_audit.py::test_list_messages_forbidden_non_member PASSED [ 39%]
+tests/test_messages_and_audit.py::test_audit_log_on_ticket_create PASSED [ 42%]
+tests/test_messages_and_audit.py::test_audit_log_on_message_create PASSED [ 46%]
+tests/test_tickets.py::test_create_ticket PASSED                         [ 50%]
+tests/test_tickets.py::test_read_tickets PASSED                          [ 53%]
+tests/test_tickets.py::test_update_ticket_status_valid_transition PASSED [ 57%]
+tests/test_tickets.py::test_update_ticket_status_invalid_transition PASSED [ 60%]
+tests/test_tickets.py::test_viewer_cannot_update_ticket_status PASSED    [ 64%]
+tests/test_tickets.py::test_assign_ticket_valid PASSED                   [ 67%]
+tests/test_tickets.py::test_assign_ticket_unassign PASSED                [ 71%]
+tests/test_tickets.py::test_assign_ticket_to_outsider_fails PASSED       [ 75%]
+tests/test_webhooks.py::test_ingest_ticket_new_user FAILED               [ 78%]
+tests/test_webhooks.py::test_ingest_ticket_existing_user FAILED          [ 82%]
+tests/test_webhooks.py::test_ingest_ticket_invalid_secret PASSED         [ 85%]
+tests/test_workspaces.py::test_create_workspace PASSED                   [ 89%]
+tests/test_workspaces.py::test_add_and_remove_member PASSED              [ 92%]
+tests/test_workspaces.py::test_non_admin_cannot_add_member PASSED        [ 96%]
+tests/test_workspaces.py::test_admin_cannot_remove_self PASSED           [100%]
+
+================================== FAILURES ===================================
+_________________________ test_ingest_ticket_new_user _________________________
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+E   psycopg2.errors.UndefinedTable: relation "jobs" does not exist
+E   LINE 2: FROM jobs 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\test_webhooks.py:43: in test_ingest_ticket_new_user
+    resp = client.post(
+.venv\Lib\site-packages\starlette\testclient.py:546: in post
+    return super().post(
+.venv\Lib\site-packages\httpx\_client.py:1144: in post
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:445: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:348: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:345: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv\Lib\site-packages\anyio\from_thread.py:334: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+.venv\Lib\site-packages\anyio\from_thread.py:259: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1134: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\starlette\middleware\base.py:198: in __call__
+    raise app_exc
+.venv\Lib\site-packages\starlette\middleware\base.py:144: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:736: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:290: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:119: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:106: in app
+    await response(scope, receive, send)
+.venv\Lib\site-packages\starlette\responses.py:167: in __call__
+    await self.background()
+.venv\Lib\site-packages\starlette\background.py:36: in __call__
+    await task()
+.venv\Lib\site-packages\starlette\background.py:23: in __call__
+    await run_in_threadpool(self.func, *self.args, **self.kwargs)
+.venv\Lib\site-packages\starlette\concurrency.py:32: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\to_thread.py:63: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2502: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:986: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+app\services\job_service.py:49: in execute_job
+    job = db.query(Job).filter(Job.id == job_id).first()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\query.py:2759: in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\query.py:2857: in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+E   sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "jobs" does not exist
+E   LINE 2: FROM jobs 
+E                ^
+E   
+E   [SQL: SELECT jobs.id AS jobs_id, jobs.name AS jobs_name, jobs.payload AS jobs_payload, jobs.status AS jobs_status, jobs.error AS jobs_error, jobs.created_at AS jobs_created_at, jobs.started_at AS jobs_started_at, jobs.completed_at AS jobs_completed_at 
+E   FROM jobs 
+E   WHERE jobs.id = %(id_1)s 
+E    LIMIT %(param_1)s]
+E   [parameters: {'id_1': 'f71ba45f-9c3c-4f0a-ac93-f2234ca3faf2', 'param_1': 1}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+______________________ test_ingest_ticket_existing_user _______________________
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+E   psycopg2.errors.UndefinedTable: relation "jobs" does not exist
+E   LINE 2: FROM jobs 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\test_webhooks.py:86: in test_ingest_ticket_existing_user
+    resp = client.post(
+.venv\Lib\site-packages\starlette\testclient.py:546: in post
+    return super().post(
+.venv\Lib\site-packages\httpx\_client.py:1144: in post
+    return self.request(
+.venv\Lib\site-packages\starlette\testclient.py:445: in request
+    return super().request(
+.venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\starlette\testclient.py:348: in handle_request
+    raise exc
+.venv\Lib\site-packages\starlette\testclient.py:345: in handle_request
+    portal.call(self.app, scope, receive, send)
+.venv\Lib\site-packages\anyio\from_thread.py:334: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+.venv\Lib\site-packages\anyio\from_thread.py:259: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\applications.py:1134: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:107: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\starlette\middleware\base.py:198: in __call__
+    raise app_exc
+.venv\Lib\site-packages\starlette\middleware\base.py:144: in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:716: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:736: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:290: in handle
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:119: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:106: in app
+    await response(scope, receive, send)
+.venv\Lib\site-packages\starlette\responses.py:167: in __call__
+    await self.background()
+.venv\Lib\site-packages\starlette\background.py:36: in __call__
+    await task()
+.venv\Lib\site-packages\starlette\background.py:23: in __call__
+    await run_in_threadpool(self.func, *self.args, **self.kwargs)
+.venv\Lib\site-packages\starlette\concurrency.py:32: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\to_thread.py:63: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:2502: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+.venv\Lib\site-packages\anyio\_backends\_asyncio.py:986: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+app\services\job_service.py:49: in execute_job
+    job = db.query(Job).filter(Job.id == job_id).first()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\query.py:2759: in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\query.py:2857: in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+E   sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "jobs" does not exist
+E   LINE 2: FROM jobs 
+E                ^
+E   
+E   [SQL: SELECT jobs.id AS jobs_id, jobs.name AS jobs_name, jobs.payload AS jobs_payload, jobs.status AS jobs_status, jobs.error AS jobs_error, jobs.created_at AS jobs_created_at, jobs.started_at AS jobs_started_at, jobs.completed_at AS jobs_completed_at 
+E   FROM jobs 
+E   WHERE jobs.id = %(id_1)s 
+E    LIMIT %(param_1)s]
+E   [parameters: {'id_1': '75c15d13-4076-47c6-ab57-c2e197bc8a09', 'param_1': 1}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+============================== warnings summary ===============================
+app\api\v1\routes\auth.py:23
+  E:\SupportAutomationAgent\app\api\v1\routes\auth.py:23: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class UserResponse(BaseModel):
+
+app\schemas\ticket.py:29
+  E:\SupportAutomationAgent\app\schemas\ticket.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class TicketResponse(TicketBase):
+
+app\schemas\message.py:10
+  E:\SupportAutomationAgent\app\schemas\message.py:10: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MessageResponse(BaseModel):
+
+app\schemas\workspace.py:9
+  E:\SupportAutomationAgent\app\schemas\workspace.py:9: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class WorkspaceResponse(BaseModel):
+
+app\schemas\workspace.py:29
+  E:\SupportAutomationAgent\app\schemas\workspace.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MemberResponse(BaseModel):
+
+tests/test_auth_and_workspaces.py::test_register_and_login
+  E:\SupportAutomationAgent\.venv\Lib\site-packages\passlib\handlers\argon2.py:716: DeprecationWarning: Accessing argon2.__version__ is deprecated and will be removed in a future release. Use importlib.metadata directly to query for argon2-cffi's packaging metadata.
+    _argon2_cffi.__version__, max_version)
+
+tests/test_auth_and_workspaces.py: 5 warnings
+tests/test_messages_and_audit.py: 8 warnings
+tests/test_tickets.py: 11 warnings
+tests/test_workspaces.py: 7 warnings
+  E:\SupportAutomationAgent\app\core\security.py:22: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    expire = datetime.utcnow() + expires_delta
+
+tests/test_auth_and_workspaces.py::test_register_and_login
+  E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\python.py:170: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_auth_and_workspaces.py::test_register_and_login returned <class 'str'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_auth_and_workspaces.py: 6 warnings
+tests/test_jobs.py: 3 warnings
+tests/test_messages_and_audit.py: 26 warnings
+tests/test_tickets.py: 34 warnings
+tests/test_webhooks.py: 12 warnings
+  E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\sql\schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/test_jobs.py::test_execute_job_success
+tests/test_jobs.py::test_execute_job_failure
+  E:\SupportAutomationAgent\app\services\job_service.py:55: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    job.started_at = datetime.datetime.utcnow()
+
+tests/test_jobs.py::test_execute_job_success
+  E:\SupportAutomationAgent\app\services\job_service.py:64: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    job.completed_at = datetime.datetime.utcnow()
+
+tests/test_jobs.py::test_execute_job_failure
+  E:\SupportAutomationAgent\app\services\job_service.py:72: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    job.completed_at = datetime.datetime.utcnow()
+
+tests/test_tickets.py::test_update_ticket_status_invalid_transition
+  E:\SupportAutomationAgent\app\api\v1\routes\tickets.py:57: DeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    return ticket_service.update_ticket(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_webhooks.py::test_ingest_ticket_new_user - sqlalchemy.exc.P...
+FAILED tests/test_webhooks.py::test_ingest_ticket_existing_user - sqlalchemy....
+================= 2 failed, 26 passed, 124 warnings in 14.94s =================

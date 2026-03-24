@@ -1,0 +1,344 @@
+FFF..FFFFFFFFFFFFFFFFFFFFFFF                                             [100%]
+================================== FAILURES ===================================
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('test@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('userA@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('admin@ws.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: jobs
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: jobs
+    [SQL: SELECT jobs.id AS jobs_id, jobs.name AS jobs_name, jobs.payload AS jobs_payload, jobs.status AS jobs_status, jobs.error AS jobs_error, jobs.created_at AS jobs_created_at, jobs.started_at AS jobs_started_at, jobs.completed_at AS jobs_completed_at 
+    FROM jobs 
+    WHERE jobs.id = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('87f8eb14-fe0a-4d0d-a907-816a52a72315', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: jobs
+E   sqlite3.OperationalError: no such table: jobs
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: jobs
+    [SQL: SELECT jobs.id AS jobs_id, jobs.name AS jobs_name, jobs.payload AS jobs_payload, jobs.status AS jobs_status, jobs.error AS jobs_error, jobs.created_at AS jobs_created_at, jobs.started_at AS jobs_started_at, jobs.completed_at AS jobs_completed_at 
+    FROM jobs 
+    WHERE jobs.id = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('aa5a5afe-82c9-411e-bd28-58cf7550726b', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: jobs
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('msg_user@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('list_msg@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('owner_msg@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('owner_list@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('audit_ticket@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('audit_msg@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('ticket_create@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('ticket_list@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('patch_ok@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('patch_bad@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('sts_admin@ws.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('assign_admin@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('unassign_admin@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('boundary_admin@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: workspaces
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: workspaces
+    [SQL: SELECT workspaces.id AS workspaces_id, workspaces.name AS workspaces_name, workspaces.owner_id AS workspaces_owner_id, workspaces.webhook_secret AS workspaces_webhook_secret 
+    FROM workspaces 
+    WHERE workspaces.id = ?
+     LIMIT ? OFFSET ?]
+    [parameters: (1, 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: workspaces
+E   sqlite3.OperationalError: no such table: workspaces
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: workspaces
+    [SQL: SELECT workspaces.id AS workspaces_id, workspaces.name AS workspaces_name, workspaces.owner_id AS workspaces_owner_id, workspaces.webhook_secret AS workspaces_webhook_secret 
+    FROM workspaces 
+    WHERE workspaces.id = ?
+     LIMIT ? OFFSET ?]
+    [parameters: (2, 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: workspaces
+E   sqlite3.OperationalError: no such table: workspaces
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: workspaces
+    [SQL: SELECT workspaces.id AS workspaces_id, workspaces.name AS workspaces_name, workspaces.owner_id AS workspaces_owner_id, workspaces.webhook_secret AS workspaces_webhook_secret 
+    FROM workspaces 
+    WHERE workspaces.id = ?
+     LIMIT ? OFFSET ?]
+    [parameters: (3, 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: workspaces
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('ws_owner@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('member_admin@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('rbac_admin@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+E   sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+E   sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+    [SQL: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.full_name AS users_full_name, users.is_active AS users_is_active 
+    FROM users 
+    WHERE users.email = ?
+     LIMIT ? OFFSET ?]
+    [parameters: ('self_remove@example.com', 1, 0)]
+    (Background on this error at: https://sqlalche.me/e/20/e3q8)
+E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+============================== warnings summary ===============================
+app\api\v1\routes\auth.py:23
+  E:\SupportAutomationAgent\app\api\v1\routes\auth.py:23: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class UserResponse(BaseModel):
+
+app\schemas\ticket.py:29
+  E:\SupportAutomationAgent\app\schemas\ticket.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class TicketResponse(TicketBase):
+
+app\schemas\message.py:10
+  E:\SupportAutomationAgent\app\schemas\message.py:10: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MessageResponse(BaseModel):
+
+app\schemas\workspace.py:9
+  E:\SupportAutomationAgent\app\schemas\workspace.py:9: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class WorkspaceResponse(BaseModel):
+
+app\schemas\workspace.py:29
+  E:\SupportAutomationAgent\app\schemas\workspace.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MemberResponse(BaseModel):
+
+tests/test_jobs.py::test_enqueue_job
+tests/test_jobs.py::test_execute_job_success
+tests/test_jobs.py::test_execute_job_failure
+  E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\sql\schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_auth_and_workspaces.py::test_register_and_login - sqlalchem...
+FAILED tests/test_auth_and_workspaces.py::test_workspace_isolation - sqlalche...
+FAILED tests/test_auth_and_workspaces.py::test_rb_permissions - sqlalchemy.ex...
+FAILED tests/test_jobs.py::test_execute_job_success - sqlalchemy.exc.Operatio...
+FAILED tests/test_jobs.py::test_execute_job_failure - sqlalchemy.exc.Operatio...
+FAILED tests/test_messages_and_audit.py::test_create_message_success - sqlalc...
+FAILED tests/test_messages_and_audit.py::test_list_messages_success - sqlalch...
+FAILED tests/test_messages_and_audit.py::test_create_message_forbidden_non_member
+FAILED tests/test_messages_and_audit.py::test_list_messages_forbidden_non_member
+FAILED tests/test_messages_and_audit.py::test_audit_log_on_ticket_create - sq...
+FAILED tests/test_messages_and_audit.py::test_audit_log_on_message_create - s...
+FAILED tests/test_tickets.py::test_create_ticket - sqlalchemy.exc.Operational...
+FAILED tests/test_tickets.py::test_read_tickets - sqlalchemy.exc.OperationalE...
+FAILED tests/test_tickets.py::test_update_ticket_status_valid_transition - sq...
+FAILED tests/test_tickets.py::test_update_ticket_status_invalid_transition - ...
+FAILED tests/test_tickets.py::test_viewer_cannot_update_ticket_status - sqlal...
+FAILED tests/test_tickets.py::test_assign_ticket_valid - sqlalchemy.exc.Opera...
+FAILED tests/test_tickets.py::test_assign_ticket_unassign - sqlalchemy.exc.Op...
+FAILED tests/test_tickets.py::test_assign_ticket_to_outsider_fails - sqlalche...
+FAILED tests/test_webhooks.py::test_ingest_ticket_new_user - sqlalchemy.exc.O...
+FAILED tests/test_webhooks.py::test_ingest_ticket_existing_user - sqlalchemy....
+FAILED tests/test_webhooks.py::test_ingest_ticket_invalid_secret - sqlalchemy...
+FAILED tests/test_workspaces.py::test_create_workspace - sqlalchemy.exc.Opera...
+FAILED tests/test_workspaces.py::test_add_and_remove_member - sqlalchemy.exc....
+FAILED tests/test_workspaces.py::test_non_admin_cannot_add_member - sqlalchem...
+FAILED tests/test_workspaces.py::test_admin_cannot_remove_self - sqlalchemy.e...
+26 failed, 2 passed, 8 warnings in 0.35s
