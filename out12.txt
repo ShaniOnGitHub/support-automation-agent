@@ -1,0 +1,286 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.2, pytest-9.0.2, pluggy-1.6.0 -- E:\SupportAutomationAgent\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: E:\SupportAutomationAgent
+plugins: anyio-4.12.1
+collecting ... collected 3 items
+
+tests/test_webhooks.py::test_ingest_ticket_new_user FAILED               [ 33%]
+tests/test_webhooks.py::test_ingest_ticket_existing_user FAILED          [ 66%]
+tests/test_webhooks.py::test_ingest_ticket_invalid_secret PASSED         [100%]
+
+================================== FAILURES ===================================
+_________________________ test_ingest_ticket_new_user _________________________
+tests\test_webhooks.py:51: in test_ingest_ticket_new_user
+    assert data["subject"] == "Help with billing"
+           ^^^^^^^^^^^^^^^
+E   KeyError: 'subject'
+---------------------------- Captured stderr call -----------------------------
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 472, in format
+    return self._format(record)
+           ~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 468, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'request_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 1150, in emit
+    msg = self.format(record)
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 998, in format
+    return fmt.format(record)
+           ~~~~~~~~~~^^^^^^^^
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 714, in format
+    s = self.formatMessage(record)
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 683, in formatMessage
+    return self._style.format(record)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 474, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'request_id'
+Call stack:
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pytest\__main__.py", line 9, in <module>
+    raise SystemExit(pytest.console_main())
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\config\__init__.py", line 223, in console_main
+    code = main()
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\config\__init__.py", line 199, in main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 365, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 318, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 372, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 396, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 137, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 244, in call_and_report
+    call = CallInfo.from_call(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 353, in from_call
+    result: TResult | None = func()
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 245, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 179, in pytest_runtest_call
+    item.runtest()
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\python.py", line 1720, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\python.py", line 166, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "E:\SupportAutomationAgent\tests\test_webhooks.py", line 43, in test_ingest_ticket_new_user
+    resp = client.post(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\starlette\testclient.py", line 546, in post
+    return super().post(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\starlette\testclient.py", line 445, in request
+    return super().request(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 1025, in _send_single_request
+    logger.info(
+Message: 'HTTP Request: %s %s "%s %d %s"'
+Arguments: ('POST', URL('http://testserver/api/v1/workspaces/1/ingest'), 'HTTP/1.1', 201, 'Created')
+------------------------------ Captured log call ------------------------------
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/v1/workspaces/1/ingest "HTTP/1.1 201 Created"
+______________________ test_ingest_ticket_existing_user _______________________
+tests\test_webhooks.py:93: in test_ingest_ticket_existing_user
+    assert resp.json()["created_by_user_id"] == existing_user.id
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'created_by_user_id'
+---------------------------- Captured stderr call -----------------------------
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 472, in format
+    return self._format(record)
+           ~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 468, in _format
+    return self._fmt % values
+           ~~~~~~~~~~^~~~~~~~
+KeyError: 'request_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 1150, in emit
+    msg = self.format(record)
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 998, in format
+    return fmt.format(record)
+           ~~~~~~~~~~^^^^^^^^
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 714, in format
+    s = self.formatMessage(record)
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 683, in formatMessage
+    return self._style.format(record)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\rosha\AppData\Local\Programs\Python\Python313\Lib\logging\__init__.py", line 474, in format
+    raise ValueError('Formatting field not found in record: %s' % e)
+ValueError: Formatting field not found in record: 'request_id'
+Call stack:
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pytest\__main__.py", line 9, in <module>
+    raise SystemExit(pytest.console_main())
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\config\__init__.py", line 223, in console_main
+    code = main()
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\config\__init__.py", line 199, in main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 365, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 318, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 372, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\main.py", line 396, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 137, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 244, in call_and_report
+    call = CallInfo.from_call(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 353, in from_call
+    result: TResult | None = func()
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 245, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\runner.py", line 179, in pytest_runtest_call
+    item.runtest()
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\python.py", line 1720, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\_pytest\python.py", line 166, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "E:\SupportAutomationAgent\tests\test_webhooks.py", line 86, in test_ingest_ticket_existing_user
+    resp = client.post(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\starlette\testclient.py", line 546, in post
+    return super().post(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\starlette\testclient.py", line 445, in request
+    return super().request(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "E:\SupportAutomationAgent\.venv\Lib\site-packages\httpx\_client.py", line 1025, in _send_single_request
+    logger.info(
+Message: 'HTTP Request: %s %s "%s %d %s"'
+Arguments: ('POST', URL('http://testserver/api/v1/workspaces/1/ingest'), 'HTTP/1.1', 201, 'Created')
+------------------------------ Captured log call ------------------------------
+INFO     httpx:_client.py:1025 HTTP Request: POST http://testserver/api/v1/workspaces/1/ingest "HTTP/1.1 201 Created"
+============================== warnings summary ===============================
+app\api\v1\routes\auth.py:23
+  E:\SupportAutomationAgent\app\api\v1\routes\auth.py:23: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class UserResponse(BaseModel):
+
+app\schemas\ticket.py:29
+  E:\SupportAutomationAgent\app\schemas\ticket.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class TicketResponse(TicketBase):
+
+app\schemas\message.py:10
+  E:\SupportAutomationAgent\app\schemas\message.py:10: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MessageResponse(BaseModel):
+
+app\schemas\workspace.py:9
+  E:\SupportAutomationAgent\app\schemas\workspace.py:9: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class WorkspaceResponse(BaseModel):
+
+app\schemas\workspace.py:29
+  E:\SupportAutomationAgent\app\schemas\workspace.py:29: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MemberResponse(BaseModel):
+
+tests/test_webhooks.py: 12 warnings
+  E:\SupportAutomationAgent\.venv\Lib\site-packages\sqlalchemy\sql\schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/test_webhooks.py::test_ingest_ticket_new_user
+tests/test_webhooks.py::test_ingest_ticket_existing_user
+  E:\SupportAutomationAgent\app\services\job_service.py:55: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    job.started_at = datetime.datetime.utcnow()
+
+tests/test_webhooks.py::test_ingest_ticket_new_user
+tests/test_webhooks.py::test_ingest_ticket_existing_user
+  E:\SupportAutomationAgent\app\services\job_service.py:64: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    job.completed_at = datetime.datetime.utcnow()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_webhooks.py::test_ingest_ticket_new_user - KeyError: 'subject'
+FAILED tests/test_webhooks.py::test_ingest_ticket_existing_user - KeyError: '...
+================== 2 failed, 1 passed, 21 warnings in 2.67s ===================

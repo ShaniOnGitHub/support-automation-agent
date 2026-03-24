@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16
+    container_name: support_automation_db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: support_user
+      POSTGRES_PASSWORD: support_pass
+      POSTGRES_DB: support_automation
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
