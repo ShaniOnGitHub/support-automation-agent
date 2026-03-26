@@ -27,7 +27,7 @@ class RequestIdMiddleware(BaseHTTPMiddleware):
 def configure_logging():
     logging.basicConfig(
         level=settings.LOG_LEVEL,
-        format="%(asctime)s - %(name)s - %(levelname)s - [Request ID: %(request_id)s] - %(message)s",
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
     # Add filter to root logger
     logging.getLogger().addFilter(RequestIdFilter())
