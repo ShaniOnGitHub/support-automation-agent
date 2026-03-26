@@ -83,7 +83,7 @@ def generate_embeddings(text: str, task_type: str = "RETRIEVAL_DOCUMENT") -> lis
     if not client: return None
     try:
         res = client.models.embed_content(
-            model="text-embedding-004",
+            model="models/gemini-embedding-001",
             contents=text,
             config=types.EmbedContentConfig(task_type=task_type)
         )
