@@ -36,3 +36,23 @@ env/
 
 # Pytest
 .pytest_cache/
+
+# Logs and temporary files
+*.log
+*.txt
+!requirements.txt
+!GEMINI.md
+!README.md
+!alembic.ini
+out*
+output
+evidence.txt
+alembic_current.txt
+alembic_history.txt
+server_debug_log*
+uvicorn_out*
+pytest_out*
+schema_*.txt
+model_*.txt
+*.pyc
+__pycache__/

@@ -15,8 +15,15 @@ This project solves that by combining ticketing, AI triage, document grounded su
 - Creates AI suggested replies for tickets
 - Grounds suggestions using company knowledge through RAG
 - Proposes useful actions such as checking order status
-- Requires human approval before final customer facing replies
+- Requirements human approval before final customer facing replies
 - Records audit logs for key actions
+
+## Architecture
+- **FastAPI API layer**: High-performance asynchronous backend.
+- **PostgreSQL + SQLAlchemy data layer**: Reliable relational storage with modern ORM.
+- **Workspace-based multi-tenant auth and RBAC**: Secure data isolation and permission management.
+- **AI triage, RAG, and tool action workflow**: Intelligent automation grounded in knowledge.
+- **Human approval before final message sending**: Safety-first workflow for customer interactions.
 
 ## Tech Stack
 - Python

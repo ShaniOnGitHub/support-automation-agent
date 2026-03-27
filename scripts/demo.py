@@ -35,12 +35,18 @@ def run_demo():
     ws_id = ws_resp.json()["id"]
 
     # 3. Add Knowledge Base (RAG)
-    print("3️⃣  Ingesting Knowledge Base Document...")
-    kb_resp = requests.post(f"{BASE_URL}/workspaces/{ws_id}/knowledge/", json={
-        "filename": "shipping_policy.txt",
-        "content": "Our Standard shipping takes 3-5 business days. Express shipping takes 1-2 days."
-    }, headers=headers)
-    print(f"   KB Ingest: {kb_resp.status_code}")
+    print("3️⃣  Checking Knowledge Base...")
+    kb_list_resp = requests.get(f"{BASE_URL}/workspaces/{ws_id}/knowledge/", headers=headers)
+    if kb_list_resp.status_code == 200 and any(d["filename"] == "shipping_policy.txt" for d in kb_list_resp.json()):
+        print("   KB already has shipping_policy.txt, skipping ingestion.")
+    else:
+        print("   Ingesting Knowledge Base Document...")
+        kb_resp = requests.post(f"{BASE_URL}/workspaces/{ws_id}/knowledge/", json={
+            "filename": "shipping_policy.txt",
+            "content": "Our Standard shipping takes 3-5 business days. Express shipping takes 1-2 days."
+        }, headers=headers)
+        print(f"   KB Ingest: {kb_resp.status_code}")
+        time.sleep(2)
 
     # 4. Create Ticket (Simulation of customer)
     print("4️⃣  Creating Customer Ticket: 'order_id: 555'...")
@@ -51,7 +57,7 @@ def run_demo():
     print(f"   Ticket Create: {ticket_resp.status_code}")
     ticket_id = ticket_resp.json()["id"]
 
-    time.sleep(2) # Breathing room for API
+    time.sleep(5) # Breathing room for API Quota
 
     # 5. AI Triage & Suggestion
     print("5️⃣  Generating AI Suggestion & Proposing Tool Actions...")
@@ -61,6 +67,8 @@ def run_demo():
         print(f"   ❌ FAILED Suggestion: {sugg_resp.text}")
         return
     print(f"   Initial AI Suggestion: \"{sugg_resp.json().get('suggested_reply', 'None')}\"")
+
+    time.sleep(5) # Wait for quota reset
 
     # 6. Tool Action Grounding
     print("6️⃣  Agent executes proposed 'check_order_status' tool...")
