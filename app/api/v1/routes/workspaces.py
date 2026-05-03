@@ -21,8 +21,18 @@ from app.schemas.workspace import (
     MemberResponse,
 )
 from app.services import workspace_service
+from app.schemas.audit_log import AuditLogResponse
 
 router = APIRouter()
+
+
+@router.get("/", response_model=List[WorkspaceResponse])
+def list_workspaces(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(deps.get_current_active_user),
+):
+    """List all workspaces where the current user is a member."""
+    return workspace_service.list_workspaces(db, current_user.id)
 
 
 @router.post("/", response_model=WorkspaceResponse, status_code=status.HTTP_201_CREATED)
@@ -71,3 +81,18 @@ def remove_member(
 ):
     """Remove a member. Admin only. Admins cannot remove themselves."""
     workspace_service.remove_member(db, workspace_id, current_user.id, target_user_id)
+
+
+@router.get("/{workspace_id}/audit-logs", response_model=List[AuditLogResponse])
+def list_audit_logs(
+    workspace_id: int,
+    skip: int = 0,
+    limit: int = 100,
+    event_type: str | None = None,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(deps.get_current_active_user),
+):
+    """List audit logs for a workspace. Admin only."""
+    return workspace_service.get_audit_logs(
+        db, workspace_id, current_user.id, skip, limit, event_type
+    )

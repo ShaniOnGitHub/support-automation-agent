@@ -6,6 +6,7 @@ from app.models.tool_action import ToolAction
 from app.models.audit_log import AuditLog
 from app.services.workspace_service import check_workspace_membership
 from app.services.ai_service import propose_actions_for_ticket
+from app.services.exa_service import search_exa
 from app.models.ticket import Ticket
 import datetime
 
@@ -26,9 +27,6 @@ def get_proposed_actions(db: Session, workspace_id: int, ticket_id: int, user_id
         raise HTTPException(status_code=404, detail="Ticket not found")
     
     proposals = propose_actions_for_ticket(ticket.subject, ticket.description or "")
-    if not proposals and ("555" in (ticket.description or "") or "order" in ticket.subject.lower()):
-        from app.services.ai_service import ProposedAction
-        proposals = [ProposedAction(tool_name="check_order_status", parameters={"order_id": "555"})]
     
     db_actions = []
     for p in proposals:
@@ -70,6 +68,15 @@ def execute_tool_action(db: Session, workspace_id: int, action_id: int, user_id:
     elif action.tool_name == "check_refund_status":
         action.result = {"status": "processed", "amount": "$50.00", "date": "2023-10-27"}
         action.status = "success"
+    elif action.tool_name == "search_web":
+        query = action.parameters.get("query", "")
+        if not query:
+            action.result = {"error": "Missing 'query' parameter"}
+            action.status = "failed"
+        else:
+            exa_response = search_exa(query)
+            action.result = exa_response
+            action.status = exa_response.get("status", "failed")
     else:
         action.result = {"error": f"Tool '{action.tool_name}' not implemented"}
         action.status = "failed"

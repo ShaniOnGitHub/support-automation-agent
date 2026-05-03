@@ -6,6 +6,9 @@ class Settings(BaseSettings):
     LOG_LEVEL: str = "INFO"
     DATABASE_URL: str
     GEMINI_API_KEY: str = ""
+    XAI_API_KEY: str = ""
+    EXA_API_KEY: str = ""
+    AI_PROVIDER: str = "gemini" # 'gemini' or 'xai'
 
     # JWT / Auth
     SECRET_KEY: str = "dev-secret-key-change-in-production"

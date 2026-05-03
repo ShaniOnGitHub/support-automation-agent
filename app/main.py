@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.core.config import settings
@@ -13,6 +14,15 @@ app = FastAPI(title=settings.APP_NAME)
 
 # Add Request ID Middleware
 app.add_middleware(RequestIdMiddleware)
+
+# Add CORS Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Include API Router
 app.include_router(api_router, prefix="/api/v1")

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
@@ -121,3 +121,33 @@ def remove_member(
 
     db.delete(member)
     db.commit()
+
+
+def list_workspaces(db: Session, user_id: int) -> List[Workspace]:
+    """List all workspaces where the user is a member."""
+    return (
+        db.query(Workspace)
+        .join(WorkspaceMember)
+        .filter(WorkspaceMember.user_id == user_id)
+        .all()
+    )
+
+
+def get_audit_logs(
+    db: Session,
+    workspace_id: int,
+    actor_user_id: int,
+    skip: int = 0,
+    limit: int = 100,
+    event_type: str | None = None,
+) -> List[Any]:  # AuditLog is imported within route or we can import it here
+    """List audit logs for a workspace. Admin only."""
+    _require_admin(db, actor_user_id, workspace_id)
+    
+    from app.models.audit_log import AuditLog
+    query = db.query(AuditLog).filter(AuditLog.workspace_id == workspace_id)
+    
+    if event_type:
+        query = query.filter(AuditLog.event_type == event_type)
+        
+    return query.order_by(AuditLog.created_at.desc()).offset(skip).limit(limit).all()

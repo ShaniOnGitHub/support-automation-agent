@@ -214,10 +214,7 @@ def create_suggested_reply(
         context=context
     )
 
-    # Store whatever was returned (could be None if AI is unavailable)
-    if not reply and ("555" in (ticket.description or "") or "order" in ticket.subject.lower()):
-        reply = "Hello! I see you are asking about order #555. Let me check that for you."
-        
+    # Store whatever was returned (AI result or smart fallback)
     ticket.suggested_reply = reply
     if reply:
         ticket.suggested_reply_status = "pending"
