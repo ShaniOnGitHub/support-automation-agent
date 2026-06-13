@@ -21,6 +21,34 @@ const KnowledgeBasePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ filename: '', content: '' });
   const [isIngesting, setIsIngesting] = useState(false);
+  const [isParsing, setIsParsing] = useState(false);
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsParsing(true);
+    const uploadData = new FormData();
+    uploadData.append('file', file);
+
+    try {
+      const response = await api.post(`/workspaces/${currentWorkspace.id}/knowledge/parse-file`, uploadData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      setFormData({
+        filename: response.data.filename,
+        content: response.data.content,
+      });
+    } catch (err) {
+      console.error(err);
+      alert('Failed to parse file. Please verify it is a valid PDF, DOCX, or text file.');
+    } finally {
+      setIsParsing(false);
+    }
+  };
+
 
   useEffect(() => {
     if (currentWorkspace) {
@@ -115,24 +143,15 @@ const KnowledgeBasePage = () => {
       >
         <form onSubmit={handleIngest} className="space-y-4">
           <div className="space-y-1">
-            <label className="block text-sm font-medium text-foreground">Upload File (.txt, .md, .csv, .json)</label>
+            <label className="block text-sm font-medium text-foreground">
+              {isParsing ? 'Parsing Document...' : 'Upload File (.pdf, .docx, .txt)'}
+            </label>
             <input
               type="file"
-              accept=".txt,.md,.csv,.json"
+              accept=".pdf,.docx,.doc,.txt,.md,.csv,.json"
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) {
-                  const reader = new FileReader();
-                  reader.onload = (event) => {
-                    setFormData({
-                      filename: file.name,
-                      content: event.target.result
-                    });
-                  };
-                  reader.readAsText(file);
-                }
-              }}
+              disabled={isParsing || isIngesting}
+              onChange={handleFileChange}
             />
           </div>
           <Input

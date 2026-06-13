@@ -18,4 +18,6 @@ numpy
 argon2-cffi
 cryptography
 email-validator
+python-docx
+pypdf
 
