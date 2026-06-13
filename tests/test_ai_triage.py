@@ -16,23 +16,26 @@ def test_classify_ticket_no_api_key(db_session):
     res = classify_ticket_with_gemini("Subject", "Body")
     assert res is None
 
-@patch("google.generativeai.GenerativeModel")
-@patch("google.generativeai.configure")
-def test_classify_ticket_success(mock_configure, mock_model_class, db_session):
+@patch("app.services.ai_service._get_gemini_client")
+def test_classify_ticket_success(mock_get_client, db_session):
     """Test successful structured response breakdown from Gemini."""
-    from app.services.ai_service import classify_ticket_with_gemini
+    from app.services.ai_service import classify_ticket_with_gemini, TriageResult
     from app.core.config import settings
     
     settings.GEMINI_API_KEY = "dummy-key"
     
-    # Configure mock instance
-    mock_model_instance = MagicMock()
-    mock_model_class.return_value = mock_model_instance
+    # Configure mock client
+    mock_client = MagicMock()
+    mock_get_client.return_value = mock_client
     
-    # Set up JSON return text string
-    mock_model_instance.generate_content.return_value = MockGeminiResponse(
-        '{"priority": "high", "sentiment": "frustrated", "summary": "User needs refund"}'
+    # Set up modern structured response
+    mock_response = MagicMock()
+    mock_response.parsed = TriageResult(
+        priority="high",
+        sentiment="frustrated",
+        summary="User needs refund"
     )
+    mock_client.models.generate_content.return_value = mock_response
     
     res = classify_ticket_with_gemini("Billing issue", "I was double charged! Fix this.")
     
@@ -40,9 +43,7 @@ def test_classify_ticket_success(mock_configure, mock_model_class, db_session):
     assert res.priority == "high"
     assert res.sentiment == "frustrated"
     assert res.summary == "User needs refund"
-    
-    # Verify configure was called
-    mock_configure.assert_called_once_with(api_key="dummy-key")
+
 
 def test_ai_triage_background_task_integration(client, db_session):
     """

@@ -8,7 +8,8 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     XAI_API_KEY: str = ""
     EXA_API_KEY: str = ""
-    AI_PROVIDER: str = "gemini" # 'gemini' or 'xai'
+    GROQ_API_KEY: str = ""
+    AI_PROVIDER: str = "gemini" # 'gemini', 'xai', or 'groq'
 
     # JWT / Auth
     SECRET_KEY: str = "dev-secret-key-change-in-production"

@@ -9,6 +9,8 @@ from sqlalchemy.pool import StaticPool
 import app.models  # noqa: F401 — registers all models
 from app.main import app
 from app.core.database import Base, get_db
+from app.core.config import settings
+settings.AI_PROVIDER = "gemini"
 
 # Use in-memory SQLite for tests
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"

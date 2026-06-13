@@ -40,10 +40,12 @@ def test_approve_reply_creates_message(client, db_session):
     ticket_id = ticket_resp.json()["id"]
 
     # 2. Trigger suggestion (mocked)
-    with patch("app.services.ai_service.genai.GenerativeModel.generate_content") as mock_gen:
+    with patch("app.services.ai_service._get_gemini_client") as mock_get_client:
+        mock_client = MagicMock()
         mock_response = MagicMock()
         mock_response.text = "This is a suggestion"
-        mock_gen.return_value = mock_response
+        mock_client.models.generate_content.return_value = mock_response
+        mock_get_client.return_value = mock_client
         
         resp = client.post(f"/api/v1/workspaces/{ws_id}/tickets/{ticket_id}/suggested-reply", headers=headers)
         assert resp.status_code == 200
@@ -76,10 +78,12 @@ def test_reject_reply_updates_status(client, db_session):
     ticket_id = ticket_resp.json()["id"]
 
     # 2. Suggestion
-    with patch("app.services.ai_service.genai.GenerativeModel.generate_content") as mock_gen:
+    with patch("app.services.ai_service._get_gemini_client") as mock_get_client:
+        mock_client = MagicMock()
         mock_response = MagicMock()
         mock_response.text = "Suggest"
-        mock_gen.return_value = mock_response
+        mock_client.models.generate_content.return_value = mock_response
+        mock_get_client.return_value = mock_client
         client.post(f"/api/v1/workspaces/{ws_id}/tickets/{ticket_id}/suggested-reply", headers=headers)
 
     # 3. Reject
@@ -101,10 +105,12 @@ def test_unauthorized_approval_is_forbidden(client, db_session):
     ticket = client.post(f"/api/v1/workspaces/{ws_a['id']}/tickets/", json={"subject": "A", "description": "B"}, headers=headers_a).json()
     
     # Suggestion
-    with patch("app.services.ai_service.genai.GenerativeModel.generate_content") as mock_gen:
+    with patch("app.services.ai_service._get_gemini_client") as mock_get_client:
+        mock_client = MagicMock()
         mock_response = MagicMock()
         mock_response.text = "Suggest"
-        mock_gen.return_value = mock_response
+        mock_client.models.generate_content.return_value = mock_response
+        mock_get_client.return_value = mock_client
         client.post(f"/api/v1/workspaces/{ws_a['id']}/tickets/{ticket['id']}/suggested-reply", headers=headers_a)
 
     # 2. User B (login)

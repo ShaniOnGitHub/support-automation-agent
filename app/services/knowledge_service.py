@@ -63,6 +63,26 @@ def search_knowledge(db: Session, workspace_id: int, query: str, limit: int = 3)
     if not query_embedding:
         return []
 
+    # Using SQLite fallback (typically in tests): fetch all chunks for workspace, and sort in memory
+    if "sqlite" in str(db.bind.url):
+        import math
+        chunks = db.query(DocumentChunk).filter(
+            DocumentChunk.workspace_id == workspace_id
+        ).all()
+        
+        def cosine_distance(v1, v2):
+            if v1 is None or v2 is None:
+                return 1.0
+            dot_prod = sum(a * b for a, b in zip(v1, v2))
+            mag1 = math.sqrt(sum(a * a for a in v1))
+            mag2 = math.sqrt(sum(b * b for b in v2))
+            if mag1 == 0 or mag2 == 0:
+                return 1.0
+            return 1.0 - (dot_prod / (mag1 * mag2))
+        
+        chunks.sort(key=lambda c: cosine_distance(c.embedding, query_embedding))
+        return chunks[:limit]
+
     # Using raw SQL for vector similarity search via pgvector
     # Order by <=> (cosine distance), lower is better
     # We filter by workspace_id to ensure isolation
@@ -73,3 +93,4 @@ def search_knowledge(db: Session, workspace_id: int, query: str, limit: int = 3)
     ).limit(limit).all()
     
     return results
+
