@@ -23,6 +23,17 @@ const AIAssistantSidebar = ({ ticket, onUpdate }) => {
   const [isKBOpen, setIsKBOpen] = useState(false);
   const [executingActionId, setExecutingActionId] = useState(null);
 
+  const parseSuggestedReply = (suggestedReply) => {
+    if (!suggestedReply) return { replyText: '', sources: [] };
+    const parts = suggestedReply.split('\n\n[SOURCES]\n');
+    const replyText = parts[0];
+    const sourcesText = parts[1] || '';
+    const sources = sourcesText ? sourcesText.split('\n').filter(s => s.trim() !== '') : [];
+    return { replyText, sources };
+  };
+
+  const { replyText, sources } = parseSuggestedReply(ticket.suggested_reply);
+
   useEffect(() => {
     if (ticket?.id) {
       fetchActions();
@@ -81,6 +92,15 @@ const AIAssistantSidebar = ({ ticket, onUpdate }) => {
     }
   };
 
+  const handlePriorityChange = async (newPriority) => {
+    try {
+      await api.patch(`/workspaces/${ticket.workspace_id}/tickets/${ticket.id}`, { priority: newPriority });
+      onUpdate();
+    } catch (err) {
+      alert('Failed to update priority');
+    }
+  };
+
   return (
     <div className="w-80 border-l bg-muted/10 h-full overflow-y-auto flex flex-col">
       <div className="p-4 border-b bg-background flex items-center gap-2">
@@ -95,10 +115,17 @@ const AIAssistantSidebar = ({ ticket, onUpdate }) => {
             <BrainCircuit size={14} />
             AI Triage Result
           </div>
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-              {ticket.priority || 'Medium'}
-            </Badge>
+          <div className="flex flex-wrap gap-2 items-center">
+            <select
+              value={ticket.priority || 'medium'}
+              onChange={(e) => handlePriorityChange(e.target.value)}
+              className="bg-primary/10 text-primary border border-primary/20 rounded px-2 py-1 text-xs font-semibold uppercase cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary dark:bg-primary/20 dark:text-primary-foreground"
+            >
+              <option value="low" className="bg-card text-foreground">Low</option>
+              <option value="medium" className="bg-card text-foreground">Medium</option>
+              <option value="high" className="bg-card text-foreground">High</option>
+              <option value="urgent" className="bg-card text-foreground">Urgent</option>
+            </select>
             <Badge variant="outline" className="bg-background">
               Technical Issue
             </Badge>
@@ -126,7 +153,7 @@ const AIAssistantSidebar = ({ ticket, onUpdate }) => {
             {ticket.suggested_reply ? (
               <>
                 <div className="whitespace-pre-wrap text-foreground/90 italic leading-relaxed">
-                  "{ticket.suggested_reply}"
+                  "{replyText}"
                 </div>
                 <div className="mt-4 flex gap-2">
                   <Button 
@@ -150,8 +177,8 @@ const AIAssistantSidebar = ({ ticket, onUpdate }) => {
                 </div>
                 {ticket.suggested_reply_status && (
                   <div className={`mt-2 text-[10px] font-bold uppercase text-center py-0.5 rounded ${
-                    ticket.suggested_reply_status === 'approved' ? 'bg-green-100 text-green-700' : 
-                    ticket.suggested_reply_status === 'rejected' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
+                    ticket.suggested_reply_status === 'approved' ? 'bg-green-100 text-green-700 dark:bg-green-950/40 dark:text-green-400' : 
+                    ticket.suggested_reply_status === 'rejected' ? 'bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-400' : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-400'
                   }`}>
                     {ticket.suggested_reply_status}
                   </div>
@@ -216,31 +243,26 @@ const AIAssistantSidebar = ({ ticket, onUpdate }) => {
           >
             <div className="flex items-center gap-2">
               <BookOpen size={14} />
-              Grounding Context
+              Grounding Context {sources.length > 0 && `(${sources.length})`}
             </div>
             {isKBOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
           </button>
           
           {isKBOpen && (
             <div className="space-y-2 animate-in slide-in-from-top-2 duration-200">
-              <div className="bg-blue-50/50 border border-blue-100 rounded p-2">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] font-bold text-blue-700">RefundPolicy.pdf</span>
-                  <ExternalLink size={10} className="text-blue-400" />
+              {sources.map((src, i) => (
+                <div key={i} className="bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/30 rounded p-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-blue-700 dark:text-blue-400">{src}</span>
+                    <ExternalLink size={10} className="text-blue-400" />
+                  </div>
                 </div>
-                <p className="text-[10px] text-blue-800/70 leading-relaxed italic">
-                  "...refunds for orders over $50 require manager approval if requested after 14 days..."
-                </p>
-              </div>
-              <div className="bg-blue-50/50 border border-blue-100 rounded p-2">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] font-bold text-blue-700">ShippingGuide.docx</span>
-                  <ExternalLink size={10} className="text-blue-400" />
+              ))}
+              {sources.length === 0 && (
+                <div className="text-[10px] text-muted-foreground italic py-2">
+                  No source documents used for this reply.
                 </div>
-                <p className="text-[10px] text-blue-800/70 leading-relaxed italic">
-                  "...standard shipping takes 3-5 business days depending on the zone..."
-                </p>
-              </div>
+              )}
             </div>
           )}
         </section>

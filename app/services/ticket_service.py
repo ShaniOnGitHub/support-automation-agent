@@ -163,6 +163,23 @@ def update_ticket(
             )
             db.add(audit_status)
 
+    # Handle Priority
+    if "priority" in update_data and update.priority is not None:
+        if update.priority != ticket.priority:
+            old_priority = ticket.priority
+            ticket.priority = update.priority
+            changes.append(f"Priority changed: {old_priority} → {update.priority}")
+            
+            audit_priority = AuditLog(
+                event_type="ticket_priority_updated",
+                entity_type="ticket",
+                entity_id=ticket.id,
+                workspace_id=workspace_id,
+                actor_user_id=user_id,
+                detail=f"Priority changed: {old_priority} → {update.priority}",
+            )
+            db.add(audit_priority)
+
     if changes:
         db.commit()
         db.refresh(ticket)
@@ -214,11 +231,24 @@ def create_suggested_reply(
         context=context
     )
 
-    # Store whatever was returned (AI result or smart fallback)
-    ticket.suggested_reply = reply
+    # Track grounding sources
+    sources = []
+    if relevant_chunks:
+        from app.models.knowledge_base import Document
+        for chunk in relevant_chunks:
+            doc = db.query(Document).filter(Document.id == chunk.document_id).first()
+            if doc and doc.filename not in sources:
+                sources.append(doc.filename)
+
+    # Store whatever was returned (AI result or smart fallback) and append sources block
     if reply:
+        if sources:
+            ticket.suggested_reply = f"{reply}\n\n[SOURCES]\n" + "\n".join(sources)
+        else:
+            ticket.suggested_reply = reply
         ticket.suggested_reply_status = "pending"
     else:
+        ticket.suggested_reply = None
         ticket.suggested_reply_status = None
 
     audit = AuditLog(
@@ -247,9 +277,14 @@ def approve_suggested_reply(db: Session, workspace_id: int, ticket_id: int, user
         from fastapi import HTTPException
         raise HTTPException(status_code=400, detail="No suggested reply to approve")
 
+    # Strip sources block if present so it's not sent to the customer
+    reply_body = ticket.suggested_reply
+    if reply_body and "\n\n[SOURCES]\n" in reply_body:
+        reply_body = reply_body.split("\n\n[SOURCES]\n")[0]
+
     # Create message from suggestion
     db_message = Message(
-        body=ticket.suggested_reply,
+        body=reply_body,
         ticket_id=ticket.id,
         sender_user_id=user_id, # The agent who approved it becomes the sender
     )

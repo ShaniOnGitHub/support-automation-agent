@@ -24,6 +24,7 @@ class TicketUpdate(BaseModel):
     """
     status: Optional[TicketStatus] = None
     assigned_to_user_id: Optional[int] = None
+    priority: Optional[str] = None
 
 
 class TicketResponse(TicketBase):

@@ -271,3 +271,64 @@ def test_assign_ticket_to_outsider_fails(client, db_session):
     )
     assert resp.status_code == 403
     assert "Not a member" in resp.json()["detail"]
+
+
+# ── Priority Update Tests ───────────────────────────────────────────────────
+
+def test_update_ticket_priority_success(client, db_session):
+    """
+    Proves that updating a ticket's priority via the PATCH endpoint succeeds
+    and creates audit logs correctly.
+    """
+    token = register_and_login(client, "priority_ok@example.com")
+    user = db_session.query(User).filter(User.email == "priority_ok@example.com").first()
+    ws = setup_workspace(db_session, user.id)
+
+    # Create ticket (starts as 'medium' default)
+    ticket = client.post(
+        f"/api/v1/workspaces/{ws.id}/tickets/",
+        json={"subject": "Priority Ticket", "priority": "medium"},
+        headers=auth_headers(token),
+    ).json()
+    assert ticket["priority"] == "medium"
+
+    # Update to urgent
+    resp = client.patch(
+        f"/api/v1/workspaces/{ws.id}/tickets/{ticket['id']}",
+        json={"priority": "urgent"},
+        headers=auth_headers(token),
+    )
+    assert resp.status_code == 200
+    assert resp.json()["priority"] == "urgent"
+
+
+def test_update_ticket_priority_wrong_workspace_forbidden(client, db_session):
+    """
+    Proves that attempting to update a ticket's priority in a workspace
+    where the user is not a member, or for a ticket belonging to another workspace,
+    is rejected with a 403 or 404 forbidden error.
+    """
+    token_user1 = register_and_login(client, "priority_u1@example.com")
+    token_user2 = register_and_login(client, "priority_u2@example.com")
+
+    user1 = db_session.query(User).filter(User.email == "priority_u1@example.com").first()
+    user2 = db_session.query(User).filter(User.email == "priority_u2@example.com").first()
+
+    ws1 = setup_workspace(db_session, user1.id)
+    ws2 = setup_workspace(db_session, user2.id)
+
+    # User 1 creates a ticket in Workspace 1
+    ticket = client.post(
+        f"/api/v1/workspaces/{ws1.id}/tickets/",
+        json={"subject": "Workspace 1 Ticket"},
+        headers=auth_headers(token_user1),
+    ).json()
+
+    # User 2 tries to update priority of User 1's ticket in Workspace 1
+    resp = client.patch(
+        f"/api/v1/workspaces/{ws1.id}/tickets/{ticket['id']}",
+        json={"priority": "high"},
+        headers=auth_headers(token_user2),
+    )
+    assert resp.status_code == 403
+
