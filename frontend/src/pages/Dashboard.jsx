@@ -55,13 +55,16 @@ const Dashboard = () => {
           <div 
             key={ws.id}
             onClick={() => handleSelectWorkspace(ws)}
-            className="group relative bg-card border rounded-xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer border-transparent hover:border-primary/50"
+            className="group relative bg-card border border-border/80 dark:border-border/30 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary/40 dark:hover:border-primary/50 transition-all duration-300 cursor-pointer overflow-hidden backdrop-blur-sm"
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className="p-3 bg-primary/10 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                <Building2 size={24} />
+            {/* Top decorative gradient glow */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/30 via-primary to-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            
+            <div className="flex items-start justify-between mb-5">
+              <div className="p-3 bg-primary/10 dark:bg-primary/20 rounded-xl text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] transition-all duration-300">
+                <Building2 size={24} className="group-hover:scale-105 transition-transform" />
               </div>
-              <ArrowRight className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" size={20} />
+              <ArrowRight className="text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" size={20} />
             </div>
             
             <h3 className="text-xl font-bold mb-1">{ws.name}</h3>

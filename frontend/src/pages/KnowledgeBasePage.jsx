@@ -184,12 +184,12 @@ const KnowledgeBasePage = () => {
             <p className="text-muted-foreground">No documents ingested yet.</p>
           </div>
         ) : documents.map((doc) => (
-          <div key={doc.id} className="bg-card border rounded-xl p-5 shadow-sm hover:border-primary/50 transition-colors group">
+          <div key={doc.id} className="bg-card border border-border/80 dark:border-border/30 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-primary/40 dark:hover:border-primary/50 transition-all duration-300 group overflow-hidden relative">
             <div className="flex items-start justify-between">
-              <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+              <div className="p-2.5 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-xl group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-colors">
                 <FileText size={20} />
               </div>
-              <button className="text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-opacity">
+              <button className="text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer">
                 <Trash2 size={16} />
               </button>
             </div>

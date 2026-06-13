@@ -94,21 +94,30 @@ const AppLayout = ({ children }) => {
           </div>
         )}
         
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 p-4 space-y-1.5">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) => `
-                flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors
+                relative flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:translate-x-1 group/nav
                 ${isActive 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                  ? 'bg-primary/10 text-primary shadow-[0_0_15px_rgba(59,130,246,0.08)] border border-primary/20 font-semibold' 
+                  : 'text-muted-foreground hover:bg-accent/60 hover:text-foreground border border-transparent'
                 }
               `}
             >
-              {item.icon}
-              {item.label}
+              {({ isActive }) => (
+                <>
+                  {isActive && (
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-primary rounded-r-md animate-in fade-in duration-200" />
+                  )}
+                  <div className={`transition-transform duration-200 group-hover/nav:scale-105 ${isActive ? 'text-primary' : 'text-muted-foreground group-hover/nav:text-foreground'}`}>
+                    {item.icon}
+                  </div>
+                  <span>{item.label}</span>
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
