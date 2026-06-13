@@ -17,3 +17,5 @@ python-multipart
 numpy
 argon2-cffi
 cryptography
+email-validator
+
