@@ -8,3 +8,12 @@ httpx
 ruff
 google-genai
 pgvector
+SQLAlchemy
+alembic
+psycopg2-binary
+python-jose
+passlib
+python-multipart
+numpy
+argon2-cffi
+cryptography
