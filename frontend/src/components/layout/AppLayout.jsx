@@ -12,10 +12,12 @@ import {
   Moon
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useWorkspace } from '../../context/WorkspaceContext';
 
 const AppLayout = ({ children }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { workspaces, currentWorkspace, selectWorkspace } = useWorkspace();
 
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
@@ -64,6 +66,33 @@ const AppLayout = ({ children }) => {
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
         </div>
+
+        {/* Workspace Switcher */}
+        {currentWorkspace && (
+          <div className="px-6 py-4 border-b bg-muted/10">
+            <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-2">
+              Workspace
+            </div>
+            {workspaces.length > 0 ? (
+              <select
+                value={currentWorkspace.id}
+                onChange={(e) => {
+                  const ws = workspaces.find(w => w.id === parseInt(e.target.value));
+                  if (ws) selectWorkspace(ws);
+                }}
+                className="w-full bg-background border border-input rounded-md px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-primary text-foreground cursor-pointer"
+              >
+                {workspaces.map(ws => (
+                  <option key={ws.id} value={ws.id} className="bg-card text-foreground">
+                    {ws.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="text-xs text-muted-foreground italic">No workspaces found</div>
+            )}
+          </div>
+        )}
         
         <nav className="flex-1 p-4 space-y-1">
           {navItems.map((item) => (
