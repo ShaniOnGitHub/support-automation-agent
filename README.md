@@ -1,6 +1,17 @@
+---
+title: Support Automation Agent
+emoji: 🤖
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Support Automation Agent
 
 AI powered multi tenant support system that helps teams manage tickets, generate grounded reply suggestions, propose useful actions, and keep humans in control before anything is sent to customers.
+
 
 ## Problem
 Support teams often handle repetitive requests manually. Agents read messages, classify issues, search policies, draft replies, and decide next actions by hand. This slows response time, increases inconsistency, and raises operational cost.
