@@ -114,6 +114,27 @@ const KnowledgeBasePage = () => {
         )}
       >
         <form onSubmit={handleIngest} className="space-y-4">
+          <div className="space-y-1">
+            <label className="block text-sm font-medium text-foreground">Upload File (.txt, .md, .csv, .json)</label>
+            <input
+              type="file"
+              accept=".txt,.md,.csv,.json"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                    setFormData({
+                      filename: file.name,
+                      content: event.target.result
+                    });
+                  };
+                  reader.readAsText(file);
+                }
+              }}
+            />
+          </div>
           <Input
             label="Filename (e.g. RefundPolicy.pdf)"
             placeholder="HelpCenter_Article_01.txt"
