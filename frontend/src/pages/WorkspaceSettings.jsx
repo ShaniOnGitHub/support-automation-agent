@@ -73,12 +73,14 @@ const WorkspaceSettings = () => {
 
   return (
     <div className="p-8 max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500">
-      <div className="flex justify-between items-end border-b pb-6">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b pb-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Workspace Settings</h1>
-          <p className="text-muted-foreground mt-1">Manage members and roles for {currentWorkspace.name}.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Workspace Settings</h1>
+          <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+            Manage members and roles for {currentWorkspace.name}.
+          </p>
         </div>
-        <div className="flex gap-2 text-xs font-mono bg-muted px-3 py-1 rounded-md text-muted-foreground">
+        <div className="flex gap-2 text-xs font-mono bg-muted px-3 py-1 rounded-md text-muted-foreground shrink-0 self-start sm:self-auto">
           <span>WS_ID:</span>
           <span className="text-foreground">{currentWorkspace.id}</span>
         </div>

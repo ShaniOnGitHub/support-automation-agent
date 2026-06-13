@@ -160,12 +160,14 @@ const KnowledgeBasePage = () => {
 
   return (
     <div className="p-8 max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500">
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b pb-5">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Knowledge Base</h1>
-          <p className="text-muted-foreground mt-1">Manage documents used by the AI to ground its responses.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Knowledge Base</h1>
+          <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+            Manage documents used by the AI to ground its responses.
+          </p>
         </div>
-        <Button onClick={() => setIsModalOpen(true)} className="gap-2">
+        <Button onClick={() => setIsModalOpen(true)} className="gap-2 shrink-0">
           <Plus size={18} />
           Ingest Document
         </Button>

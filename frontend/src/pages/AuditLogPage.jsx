@@ -47,9 +47,11 @@ const AuditLogPage = () => {
 
   return (
     <div className="p-8 space-y-6 animate-in fade-in duration-500">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Audit Logs</h1>
-        <p className="text-muted-foreground mt-1">Tracking all activity in {currentWorkspace.name}.</p>
+      <div className="border-b pb-5">
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">Audit Logs</h1>
+        <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+          Tracking all activity in {currentWorkspace.name}.
+        </p>
       </div>
 
       <div className="flex flex-wrap items-center gap-4 bg-card p-4 rounded-lg border">

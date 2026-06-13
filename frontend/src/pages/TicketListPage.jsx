@@ -70,12 +70,14 @@ const TicketListPage = () => {
 
   return (
     <div className="p-8 space-y-6 animate-in fade-in duration-500">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b pb-5">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Tickets</h1>
-          <p className="text-muted-foreground">Manage and respond to customer requests in {currentWorkspace.name}.</p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Tickets</h1>
+          <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+            Manage and respond to customer requests in {currentWorkspace.name}.
+          </p>
         </div>
-        <Button onClick={() => navigate('/tickets/new')} className="gap-2 self-start">
+        <Button onClick={() => navigate('/tickets/new')} className="gap-2 shrink-0">
           <Plus size={18} />
           New Ticket
         </Button>

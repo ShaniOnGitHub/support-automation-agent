@@ -37,12 +37,14 @@ const Dashboard = () => {
 
   return (
     <div className="p-8 max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500">
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b pb-5">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Your Workspaces</h1>
-          <p className="text-muted-foreground mt-1">Select a workspace to manage tickets and AI settings.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Your Workspaces</h1>
+          <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+            Select a workspace to manage tickets and AI settings.
+          </p>
         </div>
-        <Button onClick={() => setIsModalOpen(true)} className="gap-2">
+        <Button onClick={() => setIsModalOpen(true)} className="gap-2 shrink-0">
           <Plus size={18} />
           New Workspace
         </Button>
