@@ -57,7 +57,7 @@ This project solves that by combining ticketing, AI triage, document grounded su
 8. Approved replies become real messages
 
 ## Verification
-- 68 automated tests passed
+- 49 automated tests passed
 - Verified on SQLite for tests
 - Verified on PostgreSQL for runtime flow
 - End to end demo includes ticket creation, knowledge ingestion, AI suggestion, tool execution, grounded regeneration, approval, and final message sending
